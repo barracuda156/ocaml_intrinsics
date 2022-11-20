@@ -13,7 +13,9 @@ static inline uint64_t crc64(uint64_t initial, uint64_t data)
 #elif defined(__SSE4_2__)
   return __builtin_ia32_crc32di(initial, data);
 #else
-#error "Target not supported"
+  /* Platform not supported, but we don't want to prevent the rest of the library from
+     building on it. This is a temporary solution. */
+  abort();
 #endif
 }
 #else // not ARCH_SIXTYFOUR
@@ -24,7 +26,9 @@ static inline uint32_t crc32(uint32_t initial, uint32_t data)
 #elif defined(__SSE4_2__)
    return __builtin_ia32_crc32si(initial, data);
 #else
-#error "Target not supported"
+  /* Platform not supported, but we don't want to prevent the rest of the library from
+     building on it. This is a temporary solution. */
+  abort();
 #endif
 }
 #endif // ARCH_SIXTYFOUR
@@ -45,7 +49,9 @@ static inline uint32_t crc32(uint32_t initial, uint32_t data)
 }
 #endif // ARCH_SIXTYFOUR
 #else
-  #error "Target not supported"
+  /* Platform not supported, but we don't want to prevent the rest of the library from
+     building on it. This is a temporary solution. */
+  abort();
   uint64_t crc64(uint64_t initial, uint64_t data);
   uint32_t crc32(uint32_t initial, uint32_t data);
 #endif
